@@ -27,105 +27,117 @@ class _SnackBarApp extends State<SnackBarApp> {
       ),
       body: ListView(
         children: [
-          ExpansionTile(
-            title: const Text('Behavior'),
-            initiallyExpanded: true,
-            children: [
-              RadioGroup<SnackBarBehavior>(
-                groupValue: _snackBarBehavior,
-                onChanged: (SnackBarBehavior? value) {
-                  setState(() {
-                    _snackBarBehavior = value;
-                  });
-                },
-                child: RadioListTile<SnackBarBehavior>(
-                  value: SnackBarBehavior.fixed,
-                  title: const Text("Fixed"),
-                ),
-              ),
+          _buildRadioTileExpansion(),
 
-              RadioGroup<SnackBarBehavior>(
-                groupValue: _snackBarBehavior,
-                onChanged: (SnackBarBehavior? value) {
-                  setState(() {
-                    _snackBarBehavior = value;
-                  });
-                },
-                child: RadioListTile<SnackBarBehavior>(
-                  value: SnackBarBehavior.floating,
-                  title: const Text("Floating"),
-                ),
-              ),
-            ],
-          ),
+          _buildSwitchTileExpansion(),
 
-          ExpansionTile(
-            title: const Text('Content'),
-            initiallyExpanded: true,
-            children: [
-              SwitchListTile(
-                title: const Text("Include close Icon"),
-                value: _withIcon,
-                onChanged: (bool value) {
-                  setState(() {
-                    _withIcon = value;
-                  });
-                },
-              ),
-
-              SwitchListTile(
-                title: const Text("Multi Line Text"),
-                value: _multiline,
-                onChanged: (bool value) {
-                  _multiline = value;
-                },
-              ),
-
-              SwitchListTile(
-                title: const Text("Include Action"),
-                value: _withAction,
-                onChanged: (bool value) {
-                  setState(() {
-                    _withAction = value;
-                  });
-                },
-              ),
-
-              SwitchListTile(
-                title: const Text("Long Action Label"),
-                value: _longActionLabel,
-                onChanged: !_withAction
-                    ? null
-                    : (bool value) {
-                        setState(() {
-                          _longActionLabel = value;
-                        });
-                      },
-              ),
-            ],
-          ),
-
-          ExpansionTile(
-            title: const Text('Action new-line overflow threshold'),
-
-            initiallyExpanded: true,
-
-            children: [
-              Slider(
-                value: _sliderValue,
-
-                divisions: 20,
-                label: _sliderValue.toStringAsFixed(2),
-
-                onChanged: (double value) => setState(() {
-                  _sliderValue = value;
-                }),
-              ),
-            ],
-          ),
+          _buildSliderExpansion(),
           const SizedBox(height: 100),
         ],
       ),
+    );
+  }
+
+  ExpansionTile _buildSliderExpansion() {
+    return ExpansionTile(
+      title: const Text('Action new-line overflow threshold'),
+
+      initiallyExpanded: true,
+
+      children: [
+        Slider(
+          value: _sliderValue,
+
+          divisions: 20,
+          label: _sliderValue.toStringAsFixed(2),
+
+          onChanged: (double value) => setState(() {
+            _sliderValue = value;
+          }),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSwitchTileExpansion() {
+    return ExpansionTile(
+      title: const Text('Content'),
+      initiallyExpanded: true,
+      children: [
+        SwitchListTile(
+          title: const Text("Include close Icon"),
+          value: _withIcon,
+          onChanged: (bool value) {
+            setState(() {
+              _withIcon = value;
+            });
+          },
+        ),
+
+        SwitchListTile(
+          title: const Text("Multi Line Text"),
+          value: _multiline,
+          onChanged: (bool value) {
+            _multiline = value;
+          },
+        ),
+
+        SwitchListTile(
+          title: const Text("Include Action"),
+          value: _withAction,
+          onChanged: (bool value) {
+            setState(() {
+              _withAction = value;
+            });
+          },
+        ),
+
+        SwitchListTile(
+          title: const Text("Long Action Label"),
+          value: _longActionLabel,
+          onChanged: !_withAction
+              ? null
+              : (bool value) {
+                  setState(() {
+                    _longActionLabel = value;
+                  });
+                },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildRadioTileExpansion() {
+    return ExpansionTile(
+      title: const Text('Behavior'),
+      initiallyExpanded: true,
+      children: [
+        RadioGroup<SnackBarBehavior>(
+          groupValue: _snackBarBehavior,
+          onChanged: (SnackBarBehavior? value) {
+            setState(() {
+              _snackBarBehavior = value;
+            });
+          },
+          child: RadioListTile<SnackBarBehavior>(
+            value: SnackBarBehavior.fixed,
+            title: const Text("Fixed"),
+          ),
+        ),
+
+        RadioGroup<SnackBarBehavior>(
+          groupValue: _snackBarBehavior,
+          onChanged: (SnackBarBehavior? value) {
+            setState(() {
+              _snackBarBehavior = value;
+            });
+          },
+          child: RadioListTile<SnackBarBehavior>(
+            value: SnackBarBehavior.floating,
+            title: const Text("Floating"),
+          ),
+        ),
+      ],
     );
   }
 
