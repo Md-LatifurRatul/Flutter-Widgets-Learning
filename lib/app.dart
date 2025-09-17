@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widgets/widgets/Segmented_Button/segmented_button_app.dart';
+import 'package:flutter_widgets/widgets/Snackbar/snack_bar_app.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SegmentedButtonApp(),
+      // home: SegmentedButtonApp(),
+      home: SnackBarApp(),
       theme: theme,
     );
   }
